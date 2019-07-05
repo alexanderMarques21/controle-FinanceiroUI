@@ -99,6 +99,9 @@ export class LancamentoResumoComponent implements OnInit {
             }]
         };
       }
+      if (data.length === 0) {
+        this.data = new Array();
+      }
     });
   }
 
