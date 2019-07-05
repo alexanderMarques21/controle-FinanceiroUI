@@ -58,6 +58,7 @@ export class LancamentoResumoComponent implements OnInit {
   excluir(id: number) {
     this.lancamentoService.excluir(id).subscribe(() => {
 
+      // retira o elemento deletado do banco do array da tabela
       this.lancamentos = this.lancamentos.filter(lancamento => {
         return lancamento.id !== id;
       });
@@ -66,6 +67,7 @@ export class LancamentoResumoComponent implements OnInit {
   }
 
   aoMudarPagina(event: LazyLoadEvent) {
+    console.log(event.first);
     this.paginaAtual = event.first / event.rows;
     this.listar(this.paginaAtual);
   }
@@ -74,6 +76,7 @@ export class LancamentoResumoComponent implements OnInit {
     this.lancamentoService.estatisticarPorCategoria().subscribe(data => {
       // Caso esteja registrado apenas lançamentos da mesma categoria é necessario
       // validar qual o tipo antes de desenhar o gráfico.
+      console.log(data);
       if (data.length === 1) {
         this.data = {
           labels: [data[0].tipo === 1 ? 'Despesa' : 'Lançamento'],
@@ -88,12 +91,11 @@ export class LancamentoResumoComponent implements OnInit {
 
       } else if (data.length === 2) {
         this.data = {
-          labels: ['Despesa', 'Receita'],
+          labels: [data[0].tipo === 1 ? 'Despesa' : 'Receita',  data[1].tipo === 2 ? 'Receita' : 'Despesa'],
           datasets: [
             {
               data: [ data[0].total,  data[1].total ],
-              backgroundColor: ['#C01120', '#007AD9 '],
-              hoverBackgroundColor: [ '#FF6384',   '#36A2EB']
+              backgroundColor: [data[0].tipo === 1 ? '#C01120' : '#007AD9',  data[1].tipo === 2 ? '#007AD9' : '#C01120'],
             }]
         };
       }

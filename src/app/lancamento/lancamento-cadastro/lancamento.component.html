@@ -25,11 +25,11 @@
 
     <div class="row">
       <div class="col-md-4 col-sm-16 ui-fluid form-group ">
-        <label for="vencimento" >Vencimento:</label>
+        <label for="vencimento" >Data:</label>
         <p-calendar readonly="true"
          [inputStyle] = "vencimento.invalid && vencimento.touched ? {'border':'1px solid red'} : ''" [locale]="pt" [readonlyInput]="true" id="vencimento" name="vencimento" dateFormat="dd/mm/yy"
           formControlName="vencimento"></p-calendar>
-        <p *ngIf="vencimento.invalid && vencimento.touched " class="error-message">Vencimento é obrigatório</p>
+        <p *ngIf="vencimento.invalid && vencimento.touched " class="error-message">Data é obrigatório</p>
       </div>
     </div>
 
