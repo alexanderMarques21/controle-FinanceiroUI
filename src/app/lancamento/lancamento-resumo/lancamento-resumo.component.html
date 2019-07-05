@@ -1,0 +1,68 @@
+<div class="container-fluid" style="margin-top:3%;margin-left:3%;">
+
+
+
+  <div class="row">
+    <div class="col-12">
+      <h1> Resumo dos Lançamentos</h1>
+    </div>
+  </div>
+
+  <br />
+  <br />
+
+  <div class="row">
+    <div class="col-3">
+      <button color="primary" pButton routerLink="/lancamentos/novo" label="Novo Lancamento"></button>
+    </div>
+
+
+  </div>
+  <br />
+  <br />
+  <div class="row">
+
+    <div class="col-lg-6 col-md-12">
+
+      <p-table [value]="lancamentos" [responsive]="true" autoLayout='true' [paginator]='true'
+        [totalRecords]="totalRegistros" [rows]="itensPorPagina" [lazy]="true" (onLazyLoad)="aoMudarPagina($event)">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Descrição</th>
+            <th>Valor</th>
+            <th>Tipo</th>
+            <th>Data</th>
+            <th>Ação</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-lancamento>
+          <tr>
+            <td>{{lancamento.descricao}}</td>
+            <td>{{lancamento.valor | currency:'BRL':'symbol':'1.2-2'}}</td>
+            <td [style.color]="lancamento.tipo == 1 ? 'red' : 'blue' ">
+              {{lancamento.tipo == 1 ? 'Despesa': 'Lançamento'}}</td>
+            <td>{{lancamento.vencimento}}</td>
+            <td class="td-icon">
+              <button routerLink="/lancamentos/novo/{{lancamento.id}}" pButton icon="pi pi-pencil"></button>
+              <button (click)="confirmarExclusao(lancamento.id)" pButton icon="pi pi-trash"
+                class="ui-button-danger"></button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+              <td [attr.colspan]="5">Não há lançamentos registrados no momento.</td>
+          </tr>
+
+        </ng-template>
+      </p-table>
+
+
+    </div>
+
+    <div class="col-lg-6 col-md-12">
+      <p-chart type="pie" [data]="data"></p-chart>
+    </div>
+  </div>
+
+</div>

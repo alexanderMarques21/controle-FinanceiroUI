@@ -1,0 +1,78 @@
+<div class="container">
+
+
+
+  <form [formGroup]="formLancamento" (ngSubmit)="salvar()" autocomplete="off">
+
+    <div class="row" style="margin-top:3%;">
+      <div class="col-12">
+        <h1> {{id ? 'Edição de Lançamento' : 'Cadastro de Lançamento'}}</h1>
+      </div>
+    </div>
+
+    <br/>
+    <br/>
+
+    <div class="row">
+      <div class="col-md-10 col-sm-12  ui-fluid form-group">
+        <label for="descricao">Descrição:</label>
+        <input type="text" pInputText id="descricao" formControlName="descricao">
+        <p *ngIf="descricao.invalid && descricao.touched " class="error-message">Descrição é obrigatório</p>
+      </div>
+    </div>
+
+
+
+    <div class="row">
+      <div class="col-md-4 col-sm-16 ui-fluid form-group ">
+        <label for="vencimento" >Vencimento:</label>
+        <p-calendar readonly="true"
+         [inputStyle] = "vencimento.invalid && vencimento.touched ? {'border':'1px solid red'} : ''" [locale]="pt" [readonlyInput]="true" id="vencimento" name="vencimento" dateFormat="dd/mm/yy"
+          formControlName="vencimento"></p-calendar>
+        <p *ngIf="vencimento.invalid && vencimento.touched " class="error-message">Vencimento é obrigatório</p>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 col-sm-12 ui-fluid form-group ">
+          <label for="valor">Valor:</label>
+          <input currencyMask  id="valor" pInputText  name="valor"[options]="{ prefix: 'R$', thousands: '.', decimal: ',', allowNegative:false }"
+            formControlName="valor">
+          <p *ngIf="valor.invalid && valor.touched" class="error-message">Valor é obrigatório</p>
+        </div>
+      </div>
+
+
+
+    <br/>
+
+    <div class="row" >
+      <div class="col-md-12">
+          <p>Tipo do lancamento:</p>
+      </div>
+      <div class="form-check">
+        <p-radioButton formControlName="tipo"  name="radiogroup" value="1" label="Despesa"> </p-radioButton>
+      </div>
+      <div class="form-check">
+        <p-radioButton formControlName="tipo" name="radiogroup" value="2" label="Lancamento"> </p-radioButton>
+      </div>
+    </div>
+
+
+
+    <br />
+
+    <div class="row">
+
+      <button pButton [disabled]="!formLancamento.valid" (click)="(salvar)" color="primary" label="Salvar"></button>
+
+    </div>
+
+  </form>
+
+
+
+
+
+
+</div>

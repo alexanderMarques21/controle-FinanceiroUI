@@ -1,0 +1,6 @@
+<nav class="navbar">
+    <div class="container-fluid">
+        <p-button  styleClass="ui-button-secondary" icon="pi pi-fw pi-list" (click)="menu.toggle($event)"></p-button>
+        <p-menu #menu [popup]="true"  [model]="items"></p-menu>
+
+</div>
