@@ -79,7 +79,7 @@ export class LancamentoResumoComponent implements OnInit {
       console.log(data);
       if (data.length === 1) {
         this.data = {
-          labels: [data[0].tipo === 1 ? 'Despesa' : 'Lançamento'],
+          labels: [data[0].tipo === 1 ? 'Despesa' : 'Receita'],
           datasets: [
             {
               data: [data[0].total],
