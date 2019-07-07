@@ -40,7 +40,7 @@
             <td>{{lancamento.descricao}}</td>
             <td>{{lancamento.valor | currency:'BRL':'symbol':'1.2-2'}}</td>
             <td [style.color]="lancamento.tipo == 1 ? 'red' : 'blue' ">
-              {{lancamento.tipo == 1 ? 'Despesa': 'Lançamento'}}</td>
+              {{lancamento.tipo == 1 ? 'Despesa': 'Receita'}}</td>
             <td>{{lancamento.vencimento}}</td>
             <td class="td-icon">
               <button routerLink="/lancamentos/novo/{{lancamento.id}}" pButton icon="pi pi-pencil"></button>
