@@ -23,7 +23,7 @@
     "bootstrap": "^4.3.1",
     "chart.js": "^2.8.0",
     "core-js": "^2.5.4",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "ng2-charts": "^2.2.3",
     "ngx-currency": "^2.0.0",
     "primeicons": "^1.0.0",
